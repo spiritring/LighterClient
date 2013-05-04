@@ -3,11 +3,15 @@
 
 #include <netdb.h>
 #include "exbuffer.h"
+#include <list>
+#include <pthread.h>
 
 using namespace cocos2d;
 using namespace CocosDenshion;
 
 int hSocket = 0;
+HelloWorld* pHW = NULL;
+std::list<std::pair<std::string, std::string> > MsgList;
 
 CCScene* HelloWorld::scene()
 {
@@ -23,6 +27,8 @@ CCScene* HelloWorld::scene()
     // return the scene
     return scene;
 }
+
+
 
 int HelloWorld::connect(const char* ip, unsigned short port){
     
@@ -59,11 +65,23 @@ int HelloWorld::connect(const char* ip, unsigned short port){
     return 0;
 }
 
-void recvHandle(unsigned char *rbuf, size_t len)
+int okok = 0;
+
+void HelloWorld::draw(){
+    pthread_mutex_lock(&mutex);
+    CCLog("%d", MsgList.size());
+    for (int i = 0; i < MsgList.size(); i++) {
+        EventSys.SendMessage("Login", MsgList.begin()->second);
+        MsgList.pop_front();
+    }
+    pthread_mutex_unlock(&mutex);
+}
+
+static void recvHandle(unsigned char *rbuf, size_t len)
 {
     char buffer[1024] = {0};
     memcpy(buffer, (char*)(rbuf), len);    
-    CCLog("收到数据:%d\n%s",len, buffer);
+    //CCLog("收到数据:%d\n%s",len, buffer);
     
     char sendBuf[1024] = {0};
     memcpy(sendBuf, buffer, 1024);
@@ -73,10 +91,13 @@ void recvHandle(unsigned char *rbuf, size_t len)
     *BufLen = _ntohs(len, EXBUFFER_BIG_ENDIAN);
     memcpy(sendBuf+4, (char*)(rbuf), len);
     send(hSocket, sendBuf, len+4, 0);
+    
+    pthread_mutex_lock(&pHW->mutex);
+    MsgList.push_back(std::make_pair("Login", "Fuck"));
+    pthread_mutex_unlock(&pHW->mutex);
 }
 
 static void* thread_function(void *arg) {
-    HelloWorld* pHW = (HelloWorld*)arg;
     char sBuffer[1024] = {0};
     exbuffer_t* value;
     value = exbuffer_new();
@@ -86,7 +107,6 @@ static void* thread_function(void *arg) {
         memset(sBuffer, 0, sizeof(sBuffer));
         int bufLen = recv(pHW->socketHandle, &sBuffer, 1024, 0);
         if (bufLen > 0) {
-            CCLog("XXXXXXXXXXXXXXXXXXXXXXXXXXXX");
             exbuffer_put(value,(unsigned char*)sBuffer,0,bufLen);
         }
     }
@@ -109,6 +129,8 @@ int HelloWorld::threadStart() {
             break;
         }
         
+        
+        
         errCode = pthread_create(&threadHimi, &tAttr, thread_function, this);
         
     }while (0);    
@@ -116,6 +138,9 @@ int HelloWorld::threadStart() {
     return errCode;
 }
 
+void HelloWorld::LoginEvent(std::string sData) {
+    CCLog("%s",sData.c_str());
+}
 
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
@@ -127,8 +152,8 @@ bool HelloWorld::init()
         return false;
     }
     
-    connect("192.168.1.120", 9000);
-
+    pHW = this;
+        
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
     //    you may modify it.
@@ -163,13 +188,20 @@ bool HelloWorld::init()
     this->addChild(pLabel, 1);
 
     // add "HelloWorld" splash screen"
-    CCSprite* pSprite = CCSprite::create("HelloWorld.png");
+    pSprite = CCSprite::create("HelloWorld.png");
 
     // position the sprite on the center of the screen
     pSprite->setPosition( ccp(size.width/2, size.height/2) );
 
     // add the sprite as a child to this layer
     this->addChild(pSprite, 0);
+    
+    pthread_mutex_init(&mutex,NULL);         //在创建线程之前初始化锁！！！
+    
+    EventSys.RegistEvent("Login", this, &HelloWorld::LoginEvent);
+    
+    // 网络连接
+    connect("192.168.1.120", 9000);
     
     return true;
 }

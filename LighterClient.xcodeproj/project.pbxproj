@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30CECF5F17350DC6003B0A9A /* TSEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30CECF5E17350DC6003B0A9A /* TSEvent.cpp */; };
 		30F13DF81734CC0700D9D84A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F13DF71734CC0700D9D84A /* QuartzCore.framework */; };
 		30F13DFA1734CC0700D9D84A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F13DF91734CC0700D9D84A /* OpenGLES.framework */; };
 		30F13DFC1734CC0700D9D84A /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F13DFB1734CC0700D9D84A /* OpenAL.framework */; };
@@ -210,6 +211,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		30CECF5C17350DB1003B0A9A /* TSEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TSEvent.h; sourceTree = "<group>"; };
+		30CECF5E17350DC6003B0A9A /* TSEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TSEvent.cpp; sourceTree = "<group>"; };
 		30F13DF31734CC0700D9D84A /* LighterClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LighterClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30F13DF71734CC0700D9D84A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		30F13DF91734CC0700D9D84A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1556,6 +1559,8 @@
 				30F140A61734CC0A00D9D84A /* AppDelegate.cpp */,
 				30F140A81734CC0A00D9D84A /* HelloWorldScene.h */,
 				30F140A91734CC0A00D9D84A /* HelloWorldScene.cpp */,
+				30CECF5C17350DB1003B0A9A /* TSEvent.h */,
+				30CECF5E17350DC6003B0A9A /* TSEvent.cpp */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1828,6 +1833,7 @@
 				30F1409E1734CC0A00D9D84A /* HttpClient.cpp in Sources */,
 				30F140A71734CC0A00D9D84A /* AppDelegate.cpp in Sources */,
 				30F140AA1734CC0A00D9D84A /* HelloWorldScene.cpp in Sources */,
+				30CECF5F17350DC6003B0A9A /* TSEvent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

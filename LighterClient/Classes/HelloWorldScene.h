@@ -2,6 +2,7 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
+#include "TSEvent.h"
 
 class HelloWorld : public cocos2d::CCLayer
 {
@@ -17,6 +18,11 @@ public:
     
     int connect(const char* ip, unsigned short port);
     int threadStart();
+    
+    
+    void LoginEvent(std::string sData);
+    
+    void draw();
 
     // preprocessor macro for "static create()" constructor ( node() deprecated )
     CREATE_FUNC(HelloWorld);
@@ -24,6 +30,9 @@ public:
 public:
     int socketHandle;
     pthread_t threadHimi;
+    TSEvent<HelloWorld> EventSys;
+    pthread_mutex_t mutex;
+    cocos2d::CCSprite* pSprite;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

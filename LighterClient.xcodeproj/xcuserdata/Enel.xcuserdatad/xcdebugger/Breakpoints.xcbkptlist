@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "LighterClient/Classes/HelloWorldScene.cpp"
-         timestampString = "389346949.21765"
+         timestampString = "389365996.504758"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "90"
-         endingLineNumber = "90"
+         startingLineNumber = "110"
+         endingLineNumber = "110"
          landmarkName = "thread_function(void *arg)"
          landmarkType = "7">
       </FileBreakpoint>
@@ -34,13 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "LighterClient/Classes/HelloWorldScene.cpp"
-         timestampString = "389346949.21765"
+         timestampString = "389365996.504758"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "79"
-         endingLineNumber = "79"
-         landmarkName = "thread_function(void *arg)"
-         landmarkType = "7">
+         startingLineNumber = "100"
+         endingLineNumber = "100">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -60,11 +58,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "LighterClient/Classes/HelloWorldScene.cpp"
-         timestampString = "389346949.21765"
+         timestampString = "389365996.504758"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "75"
-         endingLineNumber = "75"
+         startingLineNumber = "94"
+         endingLineNumber = "94"
          landmarkName = "recvHandle(unsigned char *rbuf, size_t len)"
          landmarkType = "7">
       </FileBreakpoint>
@@ -73,20 +71,20 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "LighterClient/Classes/HelloWorldScene.cpp"
-         timestampString = "389347260.317238"
+         timestampString = "389364028.740057"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "89"
-         endingLineNumber = "89"
-         landmarkName = "thread_function(void *arg)"
-         landmarkType = "7">
+         startingLineNumber = "53"
+         endingLineNumber = "53"
+         landmarkName = "HelloWorld::connect(const char* ip, unsigned short port)"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "LighterClient/Classes/HelloWorldScene.cpp"
-         timestampString = "389351498.098197"
+         timestampString = "389364028.740057"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "47"
@@ -99,13 +97,78 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "LighterClient/Classes/HelloWorldScene.cpp"
-         timestampString = "389351533.977885"
+         timestampString = "389365996.504758"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "41"
-         endingLineNumber = "41"
+         startingLineNumber = "99"
+         endingLineNumber = "99"
+         landmarkName = "recvHandle(unsigned char *rbuf, size_t len)"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "LighterClient/Classes/HelloWorldScene.cpp"
+         timestampString = "389364028.740057"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "39"
+         endingLineNumber = "39"
          landmarkName = "HelloWorld::connect(const char* ip, unsigned short port)"
          landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "LighterClient/Classes/HelloWorldScene.cpp"
+         timestampString = "389365996.504758"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "74"
+         endingLineNumber = "74"
+         landmarkName = "HelloWorld::draw()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "LighterClient/Classes/HelloWorldScene.cpp"
+         timestampString = "389365996.504758"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "97"
+         endingLineNumber = "97"
+         landmarkName = "recvHandle(unsigned char *rbuf, size_t len)"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "LighterClient/Classes/HelloWorldScene.cpp"
+         timestampString = "389365996.504758"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "74"
+         endingLineNumber = "74"
+         landmarkName = "HelloWorld::draw()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "LighterClient/Classes/HelloWorldScene.cpp"
+         timestampString = "389365996.504758"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "96"
+         endingLineNumber = "96"
+         landmarkName = "recvHandle(unsigned char *rbuf, size_t len)"
+         landmarkType = "7">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
