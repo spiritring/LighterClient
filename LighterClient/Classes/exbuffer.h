@@ -100,7 +100,7 @@ extern "C"
             //printf(">>little endian\n");
             HOST_ENDIAN_LITTLE = HOST_ENDIAN_LITTLE ^ (~HOST_ENDIAN_LITTLE & (0x01<<1));
         }
-        free(p);
+        //free(p);
         p = NULL;
     }
     

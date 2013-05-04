@@ -127,7 +127,7 @@ bool HelloWorld::init()
         return false;
     }
     
-    connect("127.0.0.1", 9000);
+    connect("192.168.1.120", 9000);
 
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
