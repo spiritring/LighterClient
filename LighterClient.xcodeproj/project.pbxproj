@@ -650,6 +650,7 @@
 		30F140A61734CC0A00D9D84A /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
 		30F140A81734CC0A00D9D84A /* HelloWorldScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = Classes/HelloWorldScene.h; sourceTree = "<group>"; };
 		30F140A91734CC0A00D9D84A /* HelloWorldScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HelloWorldScene.cpp; path = Classes/HelloWorldScene.cpp; sourceTree = "<group>"; };
+		30F140B01734CD4200D9D84A /* exbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = exbuffer.h; path = Classes/exbuffer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1550,6 +1551,7 @@
 		30F140A41734CC0A00D9D84A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				30F140B01734CD4200D9D84A /* exbuffer.h */,
 				30F140A51734CC0A00D9D84A /* AppDelegate.h */,
 				30F140A61734CC0A00D9D84A /* AppDelegate.cpp */,
 				30F140A81734CC0A00D9D84A /* HelloWorldScene.h */,

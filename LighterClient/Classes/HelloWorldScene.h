@@ -14,9 +14,16 @@ public:
     
     // a selector callback
     void menuCloseCallback(CCObject* pSender);
+    
+    int connect(const char* ip, unsigned short port);
+    int threadStart();
 
     // preprocessor macro for "static create()" constructor ( node() deprecated )
     CREATE_FUNC(HelloWorld);
+    
+public:
+    int socketHandle;
+    pthread_t threadHimi;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

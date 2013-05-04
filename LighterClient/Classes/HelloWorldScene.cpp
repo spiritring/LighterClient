@@ -1,8 +1,13 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
 
+#include <netdb.h>
+#include "exbuffer.h"
+
 using namespace cocos2d;
 using namespace CocosDenshion;
+
+int hSocket = 0;
 
 CCScene* HelloWorld::scene()
 {
@@ -19,6 +24,99 @@ CCScene* HelloWorld::scene()
     return scene;
 }
 
+int HelloWorld::connect(const char* ip, unsigned short port){
+    
+    struct sockaddr_in sa;
+    struct hostent* hp;
+    
+    hp = gethostbyname(ip);
+    if(!hp){
+        return -1;
+    }
+    memset(&sa, 0, sizeof(sa));
+    memcpy((char*)&sa.sin_addr, hp->h_addr, hp->h_length);
+    sa.sin_family = hp->h_addrtype;
+    sa.sin_port = htons(port);
+    
+    hSocket = socketHandle = socket(sa.sin_family, SOCK_STREAM, 0);
+    
+    if(socketHandle < 0){
+        printf( "failed to create socket\n" );
+        return -1;
+    }
+    if(::connect(socketHandle, (sockaddr*)&sa, sizeof(sa)) < 0){
+        printf( "failed to connect socket\n" );
+        ::close(socketHandle);
+        return -1;
+    }
+    
+    threadStart();
+    
+    CCLOG("Client connect OK ！ IP: %s:%d ",ip,port);
+    
+    //char* buffer = "helloworld!";
+    //send(socketHandle,buffer,strlen(buffer),0);
+    return 0;
+}
+
+void recvHandle(unsigned char *rbuf, size_t len)
+{
+    char buffer[1024] = {0};
+    memcpy(buffer, (char*)(rbuf), len);    
+    CCLog("收到数据:%d\n%s",len, buffer);
+    
+    char sendBuf[1024] = {0};
+    memcpy(sendBuf, buffer, 1024);
+    unsigned short* BufLen = (unsigned short*)sendBuf;
+    *BufLen = _ntohs(len+2, EXBUFFER_BIG_ENDIAN);
+    BufLen += 1;
+    *BufLen = _ntohs(len, EXBUFFER_BIG_ENDIAN);
+    memcpy(sendBuf+4, (char*)(rbuf), len);
+    send(hSocket, sendBuf, len+4, 0);
+}
+
+static void* thread_function(void *arg) {
+    HelloWorld* pHW = (HelloWorld*)arg;
+    char sBuffer[1024] = {0};
+    exbuffer_t* value;
+    value = exbuffer_new();
+    value->recvHandle = recvHandle;
+    
+    for (;;) {
+        memset(sBuffer, 0, sizeof(sBuffer));
+        int bufLen = recv(pHW->socketHandle, &sBuffer, 1024, 0);
+        if (bufLen > 0) {
+            CCLog("XXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            exbuffer_put(value,(unsigned char*)sBuffer,0,bufLen);
+        }
+    }
+    
+    exbuffer_dump(value,value->bufferlen);
+    exbuffer_free(&value);
+    
+    return ((void *) 0);
+}
+
+int HelloWorld::threadStart() {
+    int errCode = 0;
+    do{
+        pthread_attr_t tAttr;
+        errCode = pthread_attr_init(&tAttr);
+        errCode = pthread_attr_setdetachstate(&tAttr, PTHREAD_CREATE_DETACHED);
+        
+        if (errCode!=0) {
+            pthread_attr_destroy(&tAttr);
+            break;
+        }
+        
+        errCode = pthread_create(&threadHimi, &tAttr, thread_function, this);
+        
+    }while (0);    
+    
+    return errCode;
+}
+
+
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
@@ -28,6 +126,8 @@ bool HelloWorld::init()
     {
         return false;
     }
+    
+    connect("127.0.0.1", 9000);
 
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
